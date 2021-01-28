@@ -6,7 +6,6 @@ import { FaArrowCircleLeft } from "react-icons/fa";
 export const Button = styled(Link)`
   border-radius: 50px;
   background: ${theme.colors.darkBlue};
-  white-space: nowrap;
   padding: 12px 32px;
   color: ${theme.colors.floralWhite};
   font-size: ${theme.fonts.desktop.h3};
@@ -48,5 +47,37 @@ export const BackArrow = styled(FaArrowCircleLeft)`
 
   &:hover {
     fill: ${theme.colors.blue};
+  }
+`;
+
+export const AnswerButton = styled(Link)`
+  border-radius: 50px;
+  background: ${theme.colors.darkBlue};
+  padding: 12px 32px;
+  color: ${theme.colors.floralWhite};
+  font-size: ${theme.fonts.desktop.h4};
+  font-weight: 300;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 52px;
+  text-align: center;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    color: ${theme.colors.darkBlue};
+    background: ${theme.colors.floralWhite};
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 6px 18px;
+    font-size: ${theme.fonts.desktop.body};
   }
 `;

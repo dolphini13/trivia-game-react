@@ -5,7 +5,7 @@ import {
   GameImg,
   SettingsBack,
 } from "./GameElements";
-import { BackArrow, Button } from "../Utilities/ButtonElements";
+import { BackArrow, AnswerButton } from "../Utilities/ButtonElements";
 import questionsvg from "../../images/questionsvg.svg";
 
 export class Game extends Component {
@@ -28,10 +28,14 @@ export class Game extends Component {
         <GameImg src={questionsvg} />
         <GameButtonWrapper>
           <div>Which of the following dice is not a platonic solid?</div>
-          <Button to="">1</Button>
-          <Button to="">2</Button>
-          <Button to="">3</Button>
-          <Button to="">4</Button>
+          <AnswerButton to="">
+            Which of the following dice is not a platonic
+          </AnswerButton>
+          <AnswerButton to="">
+            Which of the following dice is not a platonic solid?
+          </AnswerButton>
+          <AnswerButton to="">Which of the following</AnswerButton>
+          <AnswerButton to="">Which of the following</AnswerButton>
         </GameButtonWrapper>
         <SettingsBack to="/settings">
           <BackArrow></BackArrow>

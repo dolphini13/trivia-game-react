@@ -7,6 +7,10 @@ export const GameWrapper = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  animation: fadein 2s;
+  -moz-animation: fadein 2s; /* Firefox */
+  -webkit-animation: fadein 2s; /* Safari and Chrome */
+  -o-animation: fadein 2s; /* Opera */
 `;
 
 export const GameButtonWrapper = styled.div`
