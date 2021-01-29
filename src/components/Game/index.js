@@ -6,50 +6,112 @@ import {
   SettingsBack,
   GameQuestion,
 } from "./GameElements";
-import { BackArrow, AnswerButton } from "../Utilities/ButtonElements";
+import { BackArrow, AnswerButton, Spinner } from "../Utilities/ButtonElements";
 import questionsvg from "../../images/questionsvg.svg";
+import axios from "axios";
+import he from "he";
+const otdb = "https://opentdb.com/api.php?amount=1";
+
+function shuffling(array) {
+  let temptArray = array;
+  for (let i = temptArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * i);
+    const temp = temptArray[i];
+    temptArray[i] = temptArray[j];
+    temptArray[j] = temp;
+  }
+  return temptArray;
+}
 
 export class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true,
       difficulty: "medium",
+      question: null,
+      answers: null,
+      correctAnswer: "",
     };
   }
 
   componentDidMount() {
+    let self = this;
     if (this.props.location.difficulty) {
       this.setState({ difficulty: this.props.location.difficulty });
     }
+    axios.get(otdb).then(function (res) {
+      // declare few variables
+      let result = res.data.results[0];
+      let answersHolder = [];
+
+      // question logic and setting right answer
+      let question = he.decode(result.question);
+      let question_length = question.length > 94 ? "long" : "normal";
+
+      // answer logic
+      let correct_answer = he.decode(result.correct_answer);
+      let correct_length = correct_answer.length > 100 ? "long" : "normal";
+      let answer_object = { text: correct_answer, length: correct_length };
+      answersHolder.push(answer_object);
+      for (let answer of result.incorrect_answers) {
+        let answer_text = he.decode(answer);
+        let answer_length = answer_text.length > 100 ? "long" : "normal";
+        answer_object = { text: answer_text, length: answer_length };
+        answersHolder.push(answer_object);
+      }
+
+      let answers;
+      if (result.type === "boolean") {
+        answers = [
+          { text: "True", length: "normal" },
+          { text: "False", length: "normal" },
+        ];
+      } else {
+        answers = shuffling([...answersHolder]);
+      }
+      console.log(answersHolder);
+      // set states
+      self.setState({
+        question: {
+          text: question,
+          length: question_length,
+        },
+        correctAnswer: correct_answer,
+        answers: [...answers],
+      });
+      self.setState({ isLoading: false });
+    });
   }
 
   render() {
+    let answers_buttons;
+    if (!this.state.isLoading) {
+      answers_buttons = this.state.answers.map((answer, index) => (
+        <AnswerButton to="" answerlenght={answer.length} key={index}>
+          {answer.text}
+        </AnswerButton>
+      ));
+    }
     return (
-      <GameWrapper>
-        <GameImg src={questionsvg} />
-        <GameButtonWrapper>
-          <GameQuestion questionlenght="normal">
-            Which of the following dice is not a platonic solid?Which of the
-            following dice is not a platonic solid?
-          </GameQuestion>
-          <AnswerButton to="" answerlenght="normal">
-            Which of the following dice is not a platonic
-          </AnswerButton>
-          <AnswerButton to="" answerlenght="long">
-            Which of the following dice is not a platonic solid?following dice
-            is not a platonic solid?following dice is not a platonic solid?
-          </AnswerButton>
-          <AnswerButton to="" answerlenght="normal">
-            Which of the following
-          </AnswerButton>
-          <AnswerButton to="" answerlenght="normal">
-            Which of the following
-          </AnswerButton>
-        </GameButtonWrapper>
-        <SettingsBack to="/settings">
-          <BackArrow></BackArrow>
-        </SettingsBack>
-      </GameWrapper>
+      <>
+        {this.state.isLoading ? (
+          <Spinner></Spinner>
+        ) : (
+          <GameWrapper>
+            <GameImg src={questionsvg} />
+            <GameButtonWrapper>
+              <GameQuestion questionlenght={this.state.question.length}>
+                {this.state.question.text}
+              </GameQuestion>
+              {answers_buttons}
+            </GameButtonWrapper>
+            <SettingsBack to="/settings">
+              <BackArrow></BackArrow>
+            </SettingsBack>
+          </GameWrapper>
+        )}
+      </>
     );
   }
 }

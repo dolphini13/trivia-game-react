@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import theme from "../../theme/Theme";
 import { Link } from "react-router-dom";
 import { FaArrowCircleLeft } from "react-icons/fa";
@@ -88,4 +88,27 @@ export const AnswerButton = styled(Link)`
         : theme.fonts.desktop.body};
     //font-size: ${theme.fonts.desktop.body};
   }
+`;
+
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Spinner = styled.div`
+  animation: ${rotate360} 1s linear infinite;
+  transform: translateZ(0);
+
+  border-top: 3px solid ${theme.colors.floralWhite};
+  border-right: 3px solid ${theme.colors.floralWhite};
+  border-bottom: 3px solid ${theme.colors.floralWhite};
+  border-left: 6px solid ${theme.colors.darkBlue};
+  background: transparent;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 `;

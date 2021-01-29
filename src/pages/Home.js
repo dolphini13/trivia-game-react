@@ -4,7 +4,6 @@ import Settings from "../components/Settings";
 import Game from "../components/Game";
 import { HomeComponent } from "./HomeElements";
 import { Switch, Route } from "react-router-dom";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 function Home() {
   return (
