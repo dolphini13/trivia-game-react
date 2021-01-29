@@ -37,10 +37,14 @@ export class Game extends Component {
   }
 
   componentDidMount() {
-    let self = this;
     if (this.props.location.difficulty) {
       this.setState({ difficulty: this.props.location.difficulty });
     }
+    this.newGame();
+  }
+
+  newGame() {
+    let self = this;
     axios.get(otdb).then(function (res) {
       // declare few variables
       let result = res.data.results[0];
@@ -85,6 +89,7 @@ export class Game extends Component {
   }
 
   checkAnswer(value) {
+    let self = this;
     let updatedAnswers = [];
     for (let answer of this.state.answers) {
       let selected = answer.text === value ? true : false;
@@ -100,7 +105,15 @@ export class Game extends Component {
     this.setState({ answers: updatedAnswers });
     this.setState({ answered: true });
     setTimeout(function () {
-      window.location.reload();
+      self.setState({
+        isLoading: true,
+        difficulty: "medium",
+        question: null,
+        answers: null,
+        correctAnswer: "",
+        answered: false,
+      });
+      self.newGame();
     }, 2500);
   }
 
