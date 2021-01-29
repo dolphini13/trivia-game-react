@@ -50,11 +50,13 @@ export const BackArrow = styled(FaArrowCircleLeft)`
   }
 `;
 
-export const AnswerButton = styled(Link)`
+export const AnswerButton = styled.a`
   border-radius: 50px;
-  background: ${theme.colors.darkBlue};
+  background: ${(props) =>
+    props.selected ? theme.colors.floralWhite : theme.colors.darkBlue};
   padding: 12px 32px;
-  color: ${theme.colors.floralWhite};
+  color: ${(props) =>
+    props.selected ? theme.colors.darkBlue : theme.colors.floralWhite};
   font-size: ${(props) =>
     props.answerlenght === "long"
       ? theme.fonts.mobile.body
@@ -74,11 +76,22 @@ export const AnswerButton = styled(Link)`
   text-align: center;
   overflow: hidden;
 
-  &:hover {
+  ${(props) =>
+    props.correct
+      ? `
+    color: ${theme.colors.floralWhite};
+    background: ${theme.colors.purple} !important;
+  }`
+      : ""};
+
+  ${(props) =>
+    props.game
+      ? `&:hover {
     transition: all 0.2s ease-in-out;
     color: ${theme.colors.darkBlue};
     background: ${theme.colors.floralWhite};
-  }
+  }`
+      : ""};
 
   @media screen and (max-width: 768px) {
     padding: 6px 18px;

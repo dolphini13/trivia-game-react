@@ -5,6 +5,7 @@ const theme = {
     blue: "#3E5C76",
     shadowBlue: "#748CAB",
     floralWhite: "#F8F1F1",
+    purple: "#4a2691",
   },
   fonts: {
     desktop: {

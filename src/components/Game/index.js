@@ -32,6 +32,7 @@ export class Game extends Component {
       question: null,
       answers: null,
       correctAnswer: "",
+      answered: false,
     };
   }
 
@@ -70,7 +71,6 @@ export class Game extends Component {
       } else {
         answers = shuffling([...answersHolder]);
       }
-      console.log(answersHolder);
       // set states
       self.setState({
         question: {
@@ -84,14 +84,53 @@ export class Game extends Component {
     });
   }
 
+  checkAnswer(value) {
+    let updatedAnswers = [];
+    for (let answer of this.state.answers) {
+      let selected = answer.text === value ? true : false;
+      let correct = answer.text === this.state.correctAnswer ? true : false;
+      answer = {
+        text: answer.text,
+        length: answer.length,
+        selected: selected,
+        correct: correct,
+      };
+      updatedAnswers.push(answer);
+    }
+    this.setState({ answers: updatedAnswers });
+    this.setState({ answered: true });
+    setTimeout(function () {
+      window.location.reload();
+    }, 2500);
+  }
+
   render() {
+    let self = this;
     let answers_buttons;
     if (!this.state.isLoading) {
-      answers_buttons = this.state.answers.map((answer, index) => (
-        <AnswerButton to="" answerlenght={answer.length} key={index}>
-          {answer.text}
-        </AnswerButton>
-      ));
+      if (!this.state.answered) {
+        answers_buttons = this.state.answers.map((answer, index) => (
+          <AnswerButton
+            answerlenght={answer.length}
+            key={index}
+            onClick={() => self.checkAnswer(answer.text)}
+            game={true}
+          >
+            {answer.text}
+          </AnswerButton>
+        ));
+      } else {
+        answers_buttons = this.state.answers.map((answer, index) => (
+          <AnswerButton
+            answerlenght={answer.length}
+            key={index}
+            correct={answer.correct}
+            selected={answer.selected}
+          >
+            {answer.text}
+          </AnswerButton>
+        ));
+      }
     }
     return (
       <>
