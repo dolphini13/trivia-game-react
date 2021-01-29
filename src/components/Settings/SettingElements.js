@@ -29,6 +29,7 @@ export const SettingsSvg = styled.img`
   margin-bottom: 20px;
   width: 350px;
   align-self: center;
+  min-height: 45px;
   @media screen and (max-width: 1000px) {
     display: none;
   }
@@ -36,6 +37,7 @@ export const SettingsSvg = styled.img`
 
 export const SettingsSvgPhone = styled.img`
   display: none;
+  min-height: 90px;
   @media screen and (max-width: 1000px) {
     display: inline-block;
   }
@@ -44,8 +46,11 @@ export const SettingsSvgPhone = styled.img`
 export const SettingsImage = styled.img`
   margin-left: 100px;
   height: 500px;
+  min-height: 500px;
+
   @media screen and (max-width: 1000px) {
     height: 300px;
+    min-height: 300px;
     margin-left: 50px;
   }
 
