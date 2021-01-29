@@ -37,15 +37,19 @@ export class Game extends Component {
   }
 
   componentDidMount() {
-    if (this.props.location.difficulty) {
-      this.setState({ difficulty: this.props.location.difficulty });
-    }
     this.newGame();
   }
 
   newGame() {
     let self = this;
-    axios.get(otdb).then(function (res) {
+    let difficulty = "medium";
+    if (
+      this.props.location.difficulty === "easy" ||
+      this.props.location.difficulty === "hard"
+    )
+      difficulty = this.props.location.difficulty;
+    console.log(otdb + `&difficulty=${difficulty}`);
+    axios.get(otdb + `&difficulty=${difficulty}`).then(function (res) {
       // declare few variables
       let result = res.data.results[0];
       let answersHolder = [];
