@@ -18,8 +18,9 @@ const theme = {
       h1: "56px",
       h2: "36px",
       h3: "20px",
-      h4: "16px",
+      h4: "18px",
       body: "14px",
+      tiny: "10px",
     },
   },
 };

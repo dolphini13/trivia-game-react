@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import theme from "../../theme/Theme";
 
 export const GameWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   animation: fadein 2s;
   -moz-animation: fadein 2s; /* Firefox */
@@ -25,12 +26,40 @@ export const GameButtonWrapper = styled.div`
   }
 `;
 
+export const GameQuestion = styled.div`
+  font-size: ${(props) =>
+    props.questionlenght === "long"
+      ? theme.fonts.desktop.h4
+      : theme.fonts.desktop.h3};
+  width: 400px;
+  align-self: center;
+  text-align: center;
+  margin-bottom: 10px;
+  max-height: 136px;
+
+  @media screen and (min-width: 1919px) {
+    width: 500px;
+  }
+
+  @media screen and (max-width: 1366px) {
+    width: 300px;
+    font-size: ${theme.fonts.desktop.h4};
+    margin-bottom: 5px;
+  }
+`;
+
 export const GameImg = styled.img`
   margin-right: 100px;
   height: 400px;
-  @media screen and (max-width: 1000px) {
-    height: 300px;
-    margin-right: 50px;
+
+  @media screen and (max-width: 1366px) {
+    height: 200px;
+    margin-right: 25px;
+  }
+
+  @media screen and (max-width: 950px) {
+    height: 180px;
+    margin-right: 25px;
   }
 
   @media screen and (max-width: 768px) {

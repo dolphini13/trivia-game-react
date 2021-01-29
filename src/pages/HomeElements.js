@@ -15,6 +15,6 @@ export const HomeComponent = styled.div`
   border-radius: 30px;
   -webkit-box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.32);
   box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.32);
-  min-height: 525px;
+  min-height: 550px;
   min-width: 300px;
 `;

@@ -55,7 +55,10 @@ export const AnswerButton = styled(Link)`
   background: ${theme.colors.darkBlue};
   padding: 12px 32px;
   color: ${theme.colors.floralWhite};
-  font-size: ${theme.fonts.desktop.h4};
+  font-size: ${(props) =>
+    props.answerlenght === "long"
+      ? theme.fonts.mobile.body
+      : theme.fonts.mobile.h4};
   font-weight: 300;
   outline: none;
   border: none;
@@ -69,6 +72,7 @@ export const AnswerButton = styled(Link)`
   margin-bottom: 10px;
   height: 52px;
   text-align: center;
+  overflow: hidden;
 
   &:hover {
     transition: all 0.2s ease-in-out;
@@ -78,6 +82,10 @@ export const AnswerButton = styled(Link)`
 
   @media screen and (max-width: 768px) {
     padding: 6px 18px;
-    font-size: ${theme.fonts.desktop.body};
+    font-size: ${(props) =>
+      props.answerlenght === "long"
+        ? theme.fonts.mobile.tiny
+        : theme.fonts.desktop.body};
+    //font-size: ${theme.fonts.desktop.body};
   }
 `;

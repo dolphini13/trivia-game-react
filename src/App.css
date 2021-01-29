@@ -12,25 +12,6 @@ code {
     monospace;
 }
 
-.fade-appear,
-.fade-enter {
-  opacity: 0;
-  z-index: 1;
-  display: none;
-}
-
-.fade-appear-active,
-.fade-enter.fade-enter-active {
-  opacity: 1;
-  display: flex;
-  transition: opacity 1200ms linear;
-}
-
-.fade-exit.fade-exit-active {
-  opacity: 0;
-  display: none;
-}
-
 @keyframes fadein {
   from {
     opacity: 0;

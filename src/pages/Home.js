@@ -10,23 +10,11 @@ function Home() {
   return (
     <>
       <HomeComponent>
-        <Route
-          render={({ location }) => (
-            <TransitionGroup className="rawr">
-              <CSSTransition
-                timeout={1200}
-                classNames="fade"
-                key={location.key}
-              >
-                <Switch location={location}>
-                  <Route exact path="/" component={Main} />
-                  <Route path="/settings" component={Settings} />
-                  <Route path="/game" component={Game} />
-                </Switch>
-              </CSSTransition>
-            </TransitionGroup>
-          )}
-        />
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route path="/settings" component={Settings} />
+          <Route path="/game" component={Game} />
+        </Switch>
       </HomeComponent>
     </>
   );

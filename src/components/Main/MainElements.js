@@ -6,6 +6,10 @@ export const MainWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation: fadein 2s;
+  -moz-animation: fadein 2s; /* Firefox */
+  -webkit-animation: fadein 2s; /* Safari and Chrome */
+  -o-animation: fadein 2s; /* Opera */
 `;
 
 export const MainHeader = styled.div`
