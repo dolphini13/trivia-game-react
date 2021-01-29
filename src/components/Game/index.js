@@ -5,6 +5,7 @@ import {
   GameImg,
   SettingsBack,
   GameQuestion,
+  GameScore,
 } from "./GameElements";
 import { BackArrow, AnswerButton, Spinner } from "../Utilities/ButtonElements";
 import questionsvg from "../../images/questionsvg.svg";
@@ -33,6 +34,7 @@ export class Game extends Component {
       answers: null,
       correctAnswer: "",
       answered: false,
+      point: 0,
     };
   }
 
@@ -108,6 +110,9 @@ export class Game extends Component {
     }
     this.setState({ answers: updatedAnswers });
     this.setState({ answered: true });
+    if (value === self.state.correctAnswer) {
+      self.setState({ point: self.state.point + 1 });
+    }
     setTimeout(function () {
       self.setState({
         isLoading: true,
@@ -117,6 +122,7 @@ export class Game extends Component {
         correctAnswer: "",
         answered: false,
       });
+
       self.newGame();
     }, 2500);
   }
@@ -167,6 +173,7 @@ export class Game extends Component {
             <SettingsBack to="/settings">
               <BackArrow></BackArrow>
             </SettingsBack>
+            <GameScore>Score: {this.state.point}</GameScore>
           </GameWrapper>
         )}
       </>

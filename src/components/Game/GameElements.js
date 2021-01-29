@@ -20,7 +20,6 @@ export const GameButtonWrapper = styled.div`
   justify-content: center;
   -webkit-flex-direction: column;
   flex-direction: column;
-
   @media screen and (max-width: 768px) {
     width: 250px;
   }
@@ -72,4 +71,15 @@ export const GameImg = styled.img`
 
 export const SettingsBack = styled(Link)`
   cursor: pointer;
+`;
+
+export const GameScore = styled.div`
+  position: absolute;
+  top: 97%;
+  right: 0;
+  padding-right: 30px;
+  padding-bottom: 25px;
+  transform: translateY(-50%);
+  color: ${theme.colors.darkBlue};
+  font-size: ${theme.fonts.desktop.h4};
 `;
