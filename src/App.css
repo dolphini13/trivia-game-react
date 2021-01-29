@@ -12,21 +12,38 @@ code {
     monospace;
 }
 
-.fade-appear,
-.fade-enter {
-  opacity: 0;
-  z-index: 1;
-  display: none;
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-
-.fade-appear-active,
-.fade-enter.fade-enter-active {
-  opacity: 1;
-  display: flex;
-  transition: opacity 1200ms linear;
+@-moz-keyframes fadein {
+  /* Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-
-.fade-exit.fade-exit-active {
-  opacity: 0;
-  display: none;
+@-webkit-keyframes fadein {
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein {
+  /* Opera */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

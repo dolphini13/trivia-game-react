@@ -19,9 +19,11 @@ export class Settings extends Component {
         <SettingsButtonWrapper>
           <SettingsSvg src={selectDiff}></SettingsSvg>
           <SettingsSvgPhone src={selectDiffPhone}></SettingsSvgPhone>
-          <Button>Easy</Button>
-          <Button>Medium</Button>
-          <Button>Hard</Button>
+          <Button to={{ pathname: "/game", difficulty: "easy" }}>Easy</Button>
+          <Button to={{ pathname: "/game", difficulty: "medium" }}>
+            Medium
+          </Button>
+          <Button to={{ pathname: "/game", difficulty: "hard" }}>Hard</Button>
         </SettingsButtonWrapper>
         <SettingsImage src={guySelect} />
         <SettingsBack to="/">

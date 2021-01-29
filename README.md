@@ -9,8 +9,7 @@ Packages:
 - react
 - react-icons
 - react-router-dom
-- react-transition-group
-- styled-components"
+- styled-components
 
 API:
 
