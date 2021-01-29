@@ -22,8 +22,10 @@ export const MainHeader = styled.div`
 export const MainPic = styled.img`
   height: 400px;
   width: 700px;
+  min-height: 400px;
 
   @media screen and (max-width: 1200px) {
+    min-height: 300px;
     height: 300px;
     width: 600px;
   }
@@ -38,6 +40,7 @@ export const MainPicAlt = styled.img`
   @media screen and (max-width: 1000px) {
     display: inline-block;
     height: 250px;
+    min-height: 250px;
     width: 500px;
     margin-bottom: 15px;
   }

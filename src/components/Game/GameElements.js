@@ -51,13 +51,16 @@ export const GameQuestion = styled.div`
 export const GameImg = styled.img`
   margin-right: 100px;
   height: 400px;
+  min-height: 400px;
 
   @media screen and (max-width: 1366px) {
+    min-height: 200px;
     height: 200px;
     margin-right: 25px;
   }
 
   @media screen and (max-width: 950px) {
+    min-height: 180px;
     height: 180px;
     margin-right: 25px;
   }
