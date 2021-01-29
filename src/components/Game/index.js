@@ -141,6 +141,8 @@ export class Game extends Component {
             selected={answer.selected}
           >
             {answer.text}
+            {answer.correct ? "✅" : ""}
+            {answer.selected && !answer.correct ? "❌" : ""}
           </AnswerButton>
         ));
       }
